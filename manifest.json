@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedLearnings",
+  "version": "0.1.0",
+  "description": "Extract and organize knowledge from your saved LinkedIn posts",
+  "minimum_chrome_version": "116",
+
+  "permissions": [
+    "sidePanel",
+    "tabGroups",
+    "tabs",
+    "storage",
+    "alarms",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://www.linkedin.com/*"
+  ],
+
+  "optional_host_permissions": [
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*",
+    "https://api.groq.com/*",
+    "https://openrouter.ai/*",
+    "http://localhost:11434/*",
+    "http://127.0.0.1:11434/*"
+  ],
+
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+
+  "side_panel": {
+    "default_path": "sidepanel/index.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/my-items/saved-posts/*"],
+      "js": [
+        "content/selectors.js",
+        "content/network-observer.js",
+        "content/extractor.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  }
+}

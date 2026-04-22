@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedLearnings</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header id="app-header">
+      <div class="header-top">
+        <h1 class="logo">LinkedLearnings<span class="logo-mark" aria-hidden="true"></span></h1>
+        <div class="header-status" id="header-status"></div>
+      </div>
+      <nav class="header-nav" id="nav">
+        <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+        <button class="nav-btn" data-view="knowledge">Knowledge</button>
+        <button class="nav-btn" data-view="settings">Settings</button>
+      </nav>
+    </header>
+
+    <!-- Persistent extraction banner — shown when running/paused -->
+    <div id="extraction-banner" style="display:none"></div>
+
+    <main id="app-content"></main>
+
+    <div id="toast-container"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
